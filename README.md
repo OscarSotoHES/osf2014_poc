@@ -16,6 +16,8 @@ Distributed Play Framework application with cache.
 
 3. Installation
 
+	Pour cette partie on a fait le choix de ne pas décrire comment installer chaque serveur différent car cela dépend de l'environnement de l'utilisateur. Dans notre cas, on a eu besoin d'installer sous Windows es sur OS X et comme les procédures sont assez différentes on préfère montrer les différents paramètres à mettre en place une fois les servers installés.
+
 	* Apache
 	
 		Dans le fichier httpd-vhosts.conf il faut ajouter :
