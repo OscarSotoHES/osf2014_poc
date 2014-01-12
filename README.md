@@ -96,7 +96,8 @@ Pour cette partie, on a fait le choix de ne pas décrire comment installer chaqu
 	play run PORT
 	````
 
-
+	Au sein de l'application on a utilisé un plugin pour utiliser Memcached. Au sein du groupe on a eu de problèmes 	pour l'utiliser car il utilise lui-même un autre plugin appelé spy-memcached. Normalement, grâce à Maven il est 	sensé de le télécharger mais des fois il ne le faisait pas. Par conséquent, il a fallu intégrer le plugin dans 		le système.
+	
 
 4. API
 -----------
