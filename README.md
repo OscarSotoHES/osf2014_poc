@@ -16,14 +16,15 @@ Distributed Play Framework application with cache.
 
 3. Installation
 
-	Pour cette partie, on a fait le choix de ne pas décrire comment installer chaque serveur différent car cela dépend de l'environnement de l'utilisateur. Dans notre cas, on a eu besoin d'installer sous Windows et OS X, et comme les procédures sont assez différentes on préfère montrer les différents paramètres à mettre en place une fois les serveurs installés.
+	Pour cette partie, on a fait le choix de ne pas décrire comment installer chaque serveur différent car cela 		dépend de l'environnement de l'utilisateur. Dans notre cas, on a eu besoin d'installer sous Windows et OS X, et 	comme les procédures sont assez différentes on préfère montrer les différents paramètres à mettre en place une 		fois les serveurs installés.
 
 	* Apache (Version 2.2.25)
 	
 
 		Dans le fichier httpd.conf il faut décommenter les lignes suivantes:
 		
-		```LoadModule proxy_module modules/mod_proxy.so
+		```
+		   LoadModule proxy_module modules/mod_proxy.so
 		   LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
 		   LoadModule proxy_connect_module modules/mod_proxy_connect.so
 		   LoadModule proxy_http_module modules/mod_proxy_http.so
@@ -33,7 +34,8 @@ Distributed Play Framework application with cache.
 	
 		Dans le fichier httpd-vhosts.conf il faut ajouter :
 	
-		```<VirtualHost *:80>
+		```
+		   <VirtualHost *:80>
 		      ServerName localhost
 		    <Location /balancer-manager>
 		      SetHandler balancer-manager
