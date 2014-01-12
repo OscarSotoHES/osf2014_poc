@@ -1,10 +1,9 @@
-Open Source Framework POC
+Distributed Play Framework application with cache.
 ===========
 
-Distributed Play Framework application with cache.
------------
 
 1. Présentation
+-----------
   
   Le but de ce projet est de tester l'impact, au niveau des performances, de l'utilisation d'un système de cache au sein d'une application Play distribuée. 
   
@@ -13,8 +12,10 @@ Distributed Play Framework application with cache.
   On utilise le plugin [play2-memcached](https://github.com/mumoshu/play2-memcached) qui s'ajoute à Play via la configuration de l'application. Ce plugin Memcached lance un serveur qui tourne derrière notre application et devant la base de données. Cela nous permet d'avoir un système distribué de cache pour améliorer les performances de l'application en respectant les principes de "Reactive Manifesto".
 
 2. Documentation
+-----------
 
 3. Installation
+-----------
 
 	Pour cette partie, on a fait le choix de ne pas décrire comment installer chaque serveur différent car cela 		dépend de l'environnement de l'utilisateur. Dans notre cas, on a eu besoin d'installer sous Windows et OS X, et 	comme les procédures sont assez différentes on préfère montrer les différents paramètres à mettre en place une 		fois les serveurs installés.
 
@@ -79,7 +80,9 @@ Distributed Play Framework application with cache.
 	
 
 4. API
+-----------
 
 5. Tests avec client REST
+-----------
 
 
