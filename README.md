@@ -11,7 +11,12 @@ Distributed Play Framework app. with cache.
   
   On utilise le plugin [play2-memcached](https://github.com/mumoshu/play2-memcached) qui s'ajoute à Play via la configuration de l'application. Ce plugin Memcached lance un serveur qui tourne derrière notre application et devant la base de données. Cela nous permet d'avoir un système distribué de cache pour améliorer les performances de l'application en respectant les principes de "Reactive Manifesto".
 
-2. Réponse aux questions
+2. Structure du projet
+-----------
+
+Pour faire les tests on a décidé d'utiliser un serveur Apache pour le front-end. Celui-ci nous permet d'accéder à un load-balancer pour les différentes instances. c'est ce service qui décide à quel noeud envoyer la requête qui arrive. Pour gérer le cache, on a décidé d'utiliser Memcached au lieu du plugin par défaut Ehcache car il ne permet pas la distribution du cache.
+
+3. Réponse aux questions
 -----------
 
 * What is the performance impact of using a caching layer when implementing a REST API with Play?
@@ -32,7 +37,7 @@ Dans notre projet ceci est fait grâce au server Memcached auquel chaque nœud s
 De cette façon, toutes les instances de l'API ont accès à un cache rapide, sûr et qui maintient l'intégrité des données. Forçément, pour ce dernier point, le développeur peut faire des erreurs et oublier de faire les opérations de cache qui rendent le cache faux.
 
 
-3. Installation
+4. Installation
 -----------
 
 Pour cette partie, on a fait le choix de ne pas décrire comment installer chaque serveur différent car cela 		dépend de l'environnement de l'utilisateur. Dans notre cas, on a eu besoin d'installer sous Windows et OS X, et 	comme les procédures sont assez différentes on préfère montrer les différents paramètres à mettre en place une 		fois les serveurs installés.
@@ -99,7 +104,7 @@ Pour cette partie, on a fait le choix de ne pas décrire comment installer chaqu
 	Au sein de l'application on a utilisé un plugin pour utiliser Memcached. Au sein du groupe on a eu de problèmes 	pour l'utiliser car il utilise lui-même un autre plugin appelé spy-memcached. Normalement, grâce à Maven il est 	sensé de le télécharger mais des fois il ne le faisait pas. Par conséquent, il a fallu intégrer le plugin dans 		le système.
 	
 
-4. API
+5. API
 -----------
 
 Cette API permet de gérer les citoyens des villes. Il a été créé dans le but de tester la performance des systèmes de caches. Que ce soit sur une application ou sur un système distribué. Il consiste de deux éléments. Des villes qui peuvent avoir 0 ou plusieurs citoyens et des citoyens qui doivent avoir une ville. Notre application utilise les routes suivants : 
@@ -117,7 +122,7 @@ Cette API permet de gérer les citoyens des villes. Il a été créé dans le bu
 	DELETE        /city/:idc/citizen/:id                controllers.Application.deleteCitizen(idc: Long, id: Long)
 ```
 
-5. Tests avec client REST
+6. Tests avec client REST
 -----------
 
 
