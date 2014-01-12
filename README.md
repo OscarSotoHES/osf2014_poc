@@ -2,7 +2,10 @@ Open Source Framework POC
 ===========
 
 Play Framework application with distributed cache.
+<<<<<<< HEAD
 -----------
+=======
+>>>>>>> fbd3e9ada49681d086543d9eaa9c9d2d2e4f0420
 
 1) Présentation
   
@@ -16,6 +19,7 @@ Play Framework application with distributed cache.
 
 3) Installation
 
+<<<<<<< HEAD
 	a) Apache
 	
 	b) Memcached
@@ -26,3 +30,9 @@ Play Framework application with distributed cache.
 3) API
 
 4) Tests avec client REST
+=======
+3) API
+
+4) Tests avec client REST
+
+>>>>>>> fbd3e9ada49681d086543d9eaa9c9d2d2e4f0420
