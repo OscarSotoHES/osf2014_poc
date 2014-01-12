@@ -1,0 +1,7 @@
+[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
+[0m[[0mdebug[0m] [0m	(/Users/jean-lucpasquier/Documents/workspace/osf_poc/conf/application.conf,/Users/jean-lucpasquier/Documents/workspace/osf_poc/target/scala-2.10/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/Users/jean-lucpasquier/Documents/workspace/osf_poc/conf/evolutions,/Users/jean-lucpasquier/Documents/workspace/osf_poc/target/scala-2.10/classes/evolutions)[0m
+[0m[[0mdebug[0m] [0m	(/Users/jean-lucpasquier/Documents/workspace/osf_poc/conf/play.plugins,/Users/jean-lucpasquier/Documents/workspace/osf_poc/target/scala-2.10/classes/play.plugins)[0m
+[0m[[0mdebug[0m] [0m	(/Users/jean-lucpasquier/Documents/workspace/osf_poc/conf/routes,/Users/jean-lucpasquier/Documents/workspace/osf_poc/target/scala-2.10/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/Users/jean-lucpasquier/Documents/workspace/osf_poc/conf/evolutions/default,/Users/jean-lucpasquier/Documents/workspace/osf_poc/target/scala-2.10/classes/evolutions/default)[0m
+[0m[[0mdebug[0m] [0m	(/Users/jean-lucpasquier/Documents/workspace/osf_poc/conf/evolutions/default/1.sql,/Users/jean-lucpasquier/Documents/workspace/osf_poc/target/scala-2.10/classes/evolutions/default/1.sql)[0m
