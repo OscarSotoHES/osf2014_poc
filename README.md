@@ -1,4 +1,4 @@
-Distributed Play Framework application with cache.
+Distributed Play Framework app. with cache.
 ===========
 
 
