@@ -16,7 +16,6 @@ Distributed Play Framework application with cache.
 
 3) Installation
 
-<<<<<<< HEAD
 	a) Apache
 	
 	b) Memcached
