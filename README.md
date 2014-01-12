@@ -11,8 +11,26 @@ Distributed Play Framework app. with cache.
   
   On utilise le plugin [play2-memcached](https://github.com/mumoshu/play2-memcached) qui s'ajoute à Play via la configuration de l'application. Ce plugin Memcached lance un serveur qui tourne derrière notre application et devant la base de données. Cela nous permet d'avoir un système distribué de cache pour améliorer les performances de l'application en respectant les principes de "Reactive Manifesto".
 
-2. Documentation
+2. Réponse aux questions
 -----------
+
+* What is the performance impact of using a caching layer when implementing a REST API with Play?
+
+Dans le cas d'une API REST il faut différencier deux situations différentes. 
+
+En effet, le cache est utilisé que dans le cas de demande d'informations à la base de données. Dans notre structure, il s'agit des requêtes GET. Donc seulement les requêtes GET sont améliorées et selon le cas cela peut être la requête la plus utilisée ou pas. Si c'est le cas, le gain de performances est très important et comme le coût de la mise en cache est négligeable, implémenter un système de cache est bénéfique. Dans le cas où on utilise l'API presque exclusivement pour des opérations d'ajout, update ou suppression d'éléments la mise en cache ne propose aucun avantage.
+
+Notre réponse fait la supposition que le cache est sécurisé et bien implémenté dans le sens que le temps d'expiration est optimal et quand le cache devient "dirty" le cache remet bien à jour l'information.
+
+
+* How is it possible to use a caching layer in a cluster environment, when several Play “nodes” are setup to serve HTTP requests?
+
+Pour pouvoir utiliser le cache dans un environnement distribué, il faut pourvoir mutualiser le cache. En effet, tous les nœuds doivent avoir la même information en cache pour maintenir l'intégrité des données retournés à l'utilisateur. Quand un des nœuds a besoin de mettre à jour ou éliminer un élément du cache tous les nœuds doivent avoir exactement la même information. C'est pour cela que la solution la plus efficiente et simple et d'utiliser un serveur de cache.
+
+Dans notre projet ceci est fait grâce au server Memcached auquel chaque nœud se connecte. En effet, chaque instance connaît l'adresse réseau du server Memcached et se connecte automatiquement. C'est le serveur qui s'occupe de toutes les opérations, synchronisation, etc...
+
+De cette façon, toutes les instances de l'API ont accès à un cache rapide, sûr et qui maintient l'intégrité des données. Forçément, pour ce dernier point, le développeur peut faire des erreurs et oublier de faire les opérations de cache qui rendent le cache faux.
+
 
 3. Installation
 -----------
