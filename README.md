@@ -1,7 +1,7 @@
 Open Source Framework POC
 ===========
 
-Play Framework application with distributed cache.
+Distributed Play Framework application with cache.
 -----------
 
 1) Présentation
