@@ -17,70 +17,86 @@ Distributed Play Framework app. with cache.
 3. Installation
 -----------
 
-	Pour cette partie, on a fait le choix de ne pas décrire comment installer chaque serveur différent car cela 		dépend de l'environnement de l'utilisateur. Dans notre cas, on a eu besoin d'installer sous Windows et OS X, et 	comme les procédures sont assez différentes on préfère montrer les différents paramètres à mettre en place une 		fois les serveurs installés.
+Pour cette partie, on a fait le choix de ne pas décrire comment installer chaque serveur différent car cela 		dépend de l'environnement de l'utilisateur. Dans notre cas, on a eu besoin d'installer sous Windows et OS X, et 	comme les procédures sont assez différentes on préfère montrer les différents paramètres à mettre en place une 		fois les serveurs installés.
 
-	* Apache (Version 2.2.25)
-	
+* Apache (Version 2.2.25)
 
-		Dans le fichier httpd.conf il faut décommenter les lignes suivantes:
-		
-		```
-		   LoadModule proxy_module modules/mod_proxy.so
-		   LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
-		   LoadModule proxy_connect_module modules/mod_proxy_connect.so
-		   LoadModule proxy_http_module modules/mod_proxy_http.so
-		
-		   Include conf/extra/httpd-vhosts.conf
-		```
-	
-		Dans le fichier httpd-vhosts.conf il faut ajouter :
-	
-		```
-		   <VirtualHost *:80>
-		      ServerName localhost
-		    <Location /balancer-manager>
-		      SetHandler balancer-manager
-		      Order Deny,Allow
-		      Deny from all
-		      Allow from .localhost
-		    </Location>
-		    <Proxy balancer://mycluster>
-		      BalancerMember http://localhost:9850
-		      BalancerMember http://localhost:9851 status=+H
-		    </Proxy>
-		    <Proxy *>
-		      Order Allow,Deny
-		      Allow From All
-		    </Proxy>
-		    ProxyPreserveHost On
-		    ProxyPass /balancer-manager !
-		    ProxyPass / balancer://mycluster/
-		    ProxyPassReverse / http://localhost:9850/
-		    ProxyPassReverse / http://localhost:9851/
-		  </VirtualHost>
-		```
 
-		Une fois la bonne configuration installée, il suffit de lancer le serveur Apache ou de le redémarrer.
+	Dans le fichier httpd.conf il faut décommenter les lignes suivantes:
 	
-	* Memcached
+	```
+	   LoadModule proxy_module modules/mod_proxy.so
+	   LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
+	   LoadModule proxy_connect_module modules/mod_proxy_connect.so
+	   LoadModule proxy_http_module modules/mod_proxy_http.so
+	
+	   Include conf/extra/httpd-vhosts.conf
+	```
 
-		Pour le serveur de cache, il suffit de lancer memcached pour le port 11211 de cette façon :
-		
-		````
-		memcached -d -p IP 11211
-		```
-	
-	* Play
+	Dans le fichier httpd-vhosts.conf il faut ajouter :
 
-		Pour ce projet, on a décidé d'utiliser deux instances de l'application. Pour les lancer, on a tout 			simplement copié l'application dans deux dossiers différents et on a utilisé la commande suivante 			avec 9850 et 9851 pour les ports (deux terminaux ou invites de commandes différent(e)s) :
-		
-		````
-		play run PORT
-		````
+	```
+	   <VirtualHost *:80>
+		  ServerName localhost
+		<Location /balancer-manager>
+		  SetHandler balancer-manager
+		  Order Deny,Allow
+		  Deny from all
+		  Allow from .localhost
+		</Location>
+		<Proxy balancer://mycluster>
+		  BalancerMember http://localhost:9850
+		  BalancerMember http://localhost:9851 status=+H
+		</Proxy>
+		<Proxy *>
+		  Order Allow,Deny
+		  Allow From All
+		</Proxy>
+		ProxyPreserveHost On
+		ProxyPass /balancer-manager !
+		ProxyPass / balancer://mycluster/
+		ProxyPassReverse / http://localhost:9850/
+		ProxyPassReverse / http://localhost:9851/
+	  </VirtualHost>
+	```
+
+	Une fois la bonne configuration installée, il suffit de lancer le serveur Apache ou de le redémarrer.
+
+* Memcached
+
+	Pour le serveur de cache, il suffit de lancer memcached pour le port 11211 de cette façon :
 	
+	````
+	memcached -d -p IP 11211
+	```
+
+* Play
+
+	Pour ce projet, on a décidé d'utiliser deux instances de l'application. Pour les lancer, on a tout 			simplement copié l'application dans deux dossiers différents et on a utilisé la commande suivante 			avec 9850 et 9851 pour les ports (deux terminaux ou invites de commandes différent(e)s) :
+	
+	````
+	play run PORT
+	````
+
+
 
 4. API
 -----------
+
+Cette API permet de gérer les citoyens des villes. Il a été créé dans le but de tester la performance des systèmes de caches. Que ce soit sur une application ou sur un système distribué. Il consiste de deux éléments. Des villes qui peuvent avoir 0 ou plusieurs citoyens et des citoyens qui doivent avoir une ville. Notre application utilise les routes suivants : 
+
+```
+# City
+	GET                /city                                                controllers.Application.allCities()
+	POST        /city                                                controllers.Application.addCity()
+	DELETE        /city/:idc                                        controllers.Application.deleteCity(idc: Long)
+	
+	# Citizen
+	GET                /citizen                                        controllers.Application.allCitizens()
+	GET                /city/:idc/citizen                        controllers.Application.getCitizensOfCity(idc: Long)
+	POST        /city/:idc/citizen                        controllers.Application.newCitizen(idc: Long)
+	DELETE        /city/:idc/citizen/:id                controllers.Application.deleteCitizen(idc: Long, id: Long)
+```
 
 5. Tests avec client REST
 -----------
