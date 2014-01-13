@@ -14,7 +14,7 @@ Distributed Play Framework app. with cache.
 2. Structure du projet
 -----------
 
-Pour faire les tests on a décidé d'utiliser un serveur Apache pour le front-end. Celui-ci nous permet d'accéder à un load-balancer pour les différentes instances. c'est ce service qui décide à quel noeud envoyer la requête qui arrive. Pour gérer le cache, on a décidé d'utiliser Memcached au lieu du plugin par défaut Ehcache car il ne permet pas la distribution du cache.
+Pour faire les tests on a décidé d'utiliser un serveur Apache pour le front-end. Celui-ci nous permet d'accéder à un load-balancer pour les différentes instances. c'est ce service qui décide à quel noeud envoyer la requête qui arrive. Pour gérer le cache, on a décidé d'utiliser Memcached au lieu du plugin par défaut Ehcache car il ne permet pas la distribution du cache. Pour finir, on utilise un serveur MySql pour la base de données.
 
 3. Réponse aux questions
 -----------
