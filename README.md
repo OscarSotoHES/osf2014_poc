@@ -125,4 +125,4 @@ Cette API permet de gérer les citoyens des villes. Il a été créé dans le bu
 6. Tests avec client REST
 -----------
 
-
+Les test ont effectue avec Jmeter en utilisant 4 configurations différents
