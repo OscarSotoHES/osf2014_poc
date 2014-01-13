@@ -146,3 +146,39 @@ Pour chaque configuration on fait tous les web services possibles
 	* Creation Citizen  => POST/city/:idc/citizen                                       
 	* Suppression Citizen => DELETE/city/:idc/citizen/:id                     
 	* Modification Citizen => PUT/city/:idc/citizen/:id 
+	
+Les résultant obtenu sont les suivantes 
+
+* Pour le premier test avec 50 Thread
+		
+| Service       | Server         | Cluster       | Server + Cache  | Cluster + Cache
+|---------------|---------------:|--------------:|----------------:|-----------------:
+|City
+|-------------------------------------------------------------------------------------
+| GET           | 15.3 ms        | 12 ms         | 9.3 ms          | 8.4 ms 
+| POST          | 12 ms          | 11 ms         | 10.3 ms         | 11.4 ms
+| PUT           | 17 ms          | 14 ms         | 12.5 ms         | 10.4 ms
+| DELETE        | 14.2 ms        | 12.5 ms       | 13 ms           | 12 ms
+| **SubTotal**  | **14.625 ms**  | **12.375 ms** | **11.275 ms**   | **10.55 ms**
+
+* Deuxième test avec 100 Thread
+
+| Service  | One server  | Cluster    | One server + Cache | Cluster + Cache
+|------------|------------:|-----------:|-------------------:|-----------------:
+| POST       | 213 ms      | 151.5 ms   | 117 ms             | 93.5 ms 
+| PUT        | 192.5 ms    | 150.5 ms   | 117 ms             | 84 ms
+| GET (one)  | 207.8 ms    | 159.3 ms   | 119.1 ms           | 83.9 ms
+| GET (all)  | 273.8 ms    | 266.7 ms   | 167.9 ms           | 159.9 ms
+| DELETE     | 282 ms      | 159 ms     | 142.5 ms           | 92.5 ms
+| **Total**  | **237 ms**  | **200 ms** | **139 ms**         | **114 ms**
+
+* Dernier test avec 200 Thread
+
+| Service  | One server  | Cluster    | One server + Cache | Cluster + Cache
+|------------|------------:|-----------:|-------------------:|-----------------:
+| POST       | 213 ms      | 151.5 ms   | 117 ms             | 93.5 ms 
+| PUT        | 192.5 ms    | 150.5 ms   | 117 ms             | 84 ms
+| GET (one)  | 207.8 ms    | 159.3 ms   | 119.1 ms           | 83.9 ms
+| GET (all)  | 273.8 ms    | 266.7 ms   | 167.9 ms           | 159.9 ms
+| DELETE     | 282 ms      | 159 ms     | 142.5 ms           | 92.5 ms
+| **Total**  | **237 ms**  | **200 ms** | **139 ms**         | **114 ms**
