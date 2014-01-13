@@ -15,11 +15,7 @@ public class Application extends Controller {
 	private static boolean cache = false;
 
     public static Result index() {
-		//this.cache = true;
-    	City city = new City("Paris");
-        City.create(city);
-    	City city1 = new City("London");
-        City.create(city1);
+	//this.cache = true;
         return ok("City & Citizen. Server 1");
     }
 	
