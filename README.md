@@ -197,11 +197,23 @@ Les résultant obtenu sont les suivantes
 
 * Dernier test avec 200 Thread
 
-| Service  | One server  | Cluster    | One server + Cache | Cluster + Cache
-|------------|------------:|-----------:|-------------------:|-----------------:
-| POST       | 213 ms      | 151.5 ms   | 117 ms             | 93.5 ms 
-| PUT        | 192.5 ms    | 150.5 ms   | 117 ms             | 84 ms
-| GET (one)  | 207.8 ms    | 159.3 ms   | 119.1 ms           | 83.9 ms
-| GET (all)  | 273.8 ms    | 266.7 ms   | 167.9 ms           | 159.9 ms
-| DELETE     | 282 ms      | 159 ms     | 142.5 ms           | 92.5 ms
-| **Total**  | **237 ms**  | **200 ms** | **139 ms**         | **114 ms**
+	* Table city 
+		
+| Service       | Server         | Cluster       | Server + Cache  | Cluster + Cache
+|---------------|---------------:|--------------:|----------------:|-----------------:
+| GET           | 73.3 ms        | 56.3 ms         | 42.1 ms          | 24.2 ms 
+| POST          | 76.4 ms          | 60.5 ms         | 45.2 ms         | 37.4 ms
+| PUT           | 80.5 ms          | 48.5 ms         | 47.3 ms         | 34.3 ms
+| DELETE        | 72 ms        | 53.1 ms       | 38.5 ms           | 36.3 ms
+| **SubTotal**  | **75.55 ms**  | **54.6 ms** | **43.275 ms**   | **33.05 ms**
+
+	* Table citizien 
+
+| Service       | Server         | Cluster        | Server + Cache  | Cluster + Cache
+|---------------|---------------:|---------------:|----------------:|-----------------:
+| GET           | 78.4 ms        | 53.2 ms          | 44.2 ms         | 20.1 ms 
+| POST          | 86.4 ms          | 58.4 ms        | 45.3 ms          | 33.6 ms
+| PUT           | 73.5 ms        | 65.4 ms        | 39.4 ms         | 38.5 ms
+| DELETE        | 79.3 ms          | 51.2 ms        | 42.1 ms           |32.1 ms
+| **SubTotal**  | **79.4 ms**  | **57.05 ms**   | **42.75 ms**   | **31.075 ms**
+| **TOTAL**     | **77.475 ms**   | **55.825 ms** | **143.0125 ms**     | **32.0625 ms**
