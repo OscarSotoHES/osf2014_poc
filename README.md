@@ -134,3 +134,15 @@ Les test ont effectue avec Jmeter en utilisant 4 configurations différents
 | Server Play avec Cache  | 1 seul serveur play en utilisant le cache
 | Cluster Play avec Cache | 2 serveurs avec le LoadBalancer et cache
 
+Pour chaque configuration on fait tous les web services possibles 
+
+* Table City
+	* Consult city   => GET/city 
+	* Creation city  => POST/city
+	* Suppression city => DELETE/city/:idc                       
+	* Modification city => PUT/city/:idc                       
+* Table Citizen
+	* Consult Citizen   => GET/citizen                                        
+	* Creation Citizen  => POST/city/:idc/citizen                                       
+	* Suppression Citizen => DELETE/city/:idc/citizen/:id                     
+	* Modification Citizen => PUT/city/:idc/citizen/:id 
