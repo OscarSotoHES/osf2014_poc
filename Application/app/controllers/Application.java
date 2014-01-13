@@ -57,7 +57,7 @@ public class Application extends Controller {
         else {
         	City city = new City(name);
             City.create(city);
-			Cache.remove("cities");
+	    Cache.remove("cities");
             return created("City created with name: "+name);
         }
     }
@@ -75,15 +75,16 @@ public class Application extends Controller {
         	String old_name = City.find.ref(idc).getName();
         	City.find.ref(idc).setName(name);
             City.update(idc);
-			Cache.remove("cities");
+	    Cache.remove("cities");
+	    Cache.remove("citiy_"+idc);
             return created("City " + old_name + " updated with name: "+name);
         }
     }
   
     public static Result deleteCity(Long idc) {
     	City.delete(idc);
-		Cache.remove("cities");
-		Cache.remove("city_"+idc);
+	Cache.remove("cities");
+	Cache.remove("city_"+idc);
     	return ok("City with id: "+idc+" is deleted");
     }
 	//END CITIES
@@ -124,7 +125,7 @@ public class Application extends Controller {
         	Citizen citizen = new Citizen(first_name, name);
             citizen.setCity(City.find.ref(idc));
             Citizen.create(citizen);
-			Cache.remove("citizens");
+	    Cache.remove("citizens");
             return created("Citizen created with name: "+first_name+" "+name+" in city "+City.find.ref(idc).toString());
         }
     }
@@ -147,16 +148,17 @@ public class Application extends Controller {
         	String old_name = Citizen.find.ref(id).getName();
         	Citizen.find.ref(id).setFirstName(first_name);
         	Citizen.find.ref(id).setName(name);
-            Citizen.update(id);
-			Cache.remove("citizens");
+            	Citizen.update(id);
+		Cache.remove("citizens");
+		Cache.remove("cityCitizens_"+idc);
             return created("Citizen " + old_first_name + " " + old_name + " updated with name: " + first_name + " " + name);
         }
     }
   
     public static Result deleteCitizen(Long idc, Long id) {
     	Citizen.delete(id);
-		Cache.remove("citizens");
-		Cache.remove("cityCitizens_"+idc);
+	Cache.remove("citizens");
+	Cache.remove("cityCitizens_"+idc);
     	return ok("Citizen with id: "+id+" is deleted");
     }
 	//END CITIZEN
