@@ -150,16 +150,25 @@ Pour chaque configuration on fait tous les web services possibles
 Les résultant obtenu sont les suivantes 
 
 * Pour le premier test avec 50 Thread
+
+	* Table city 
 		
 | Service       | Server         | Cluster       | Server + Cache  | Cluster + Cache
 |---------------|---------------:|--------------:|----------------:|-----------------:
-|City
-|-------------------------------------------------------------------------------------
 | GET           | 15.3 ms        | 12 ms         | 9.3 ms          | 8.4 ms 
 | POST          | 12 ms          | 11 ms         | 10.3 ms         | 11.4 ms
 | PUT           | 17 ms          | 14 ms         | 12.5 ms         | 10.4 ms
 | DELETE        | 14.2 ms        | 12.5 ms       | 13 ms           | 12 ms
 | **SubTotal**  | **14.625 ms**  | **12.375 ms** | **11.275 ms**   | **10.55 ms**
+
+| Service       | Server         | Cluster       | Server + Cache  | Cluster + Cache
+|---------------|---------------:|--------------:|----------------:|-----------------:
+| GET           | 16.5 ms        | 10 ms         | 10.3 ms          | 9.2 ms 
+| POST          | 15 ms          | 11.4 ms         | 9.7 ms         | 12 ms
+| PUT           | 15.6 ms        | 13.2 ms         | 11.3 ms         | 11.2 ms
+| DELETE        | 12 ms          | 11.2 ms       | 14 ms           | 8 ms
+| **SubTotal**  | **14.775 ms**  | **11.45 ms** | **11.325 ms**   | **10 ms**
+| **TOTAL**     | **14.75 ms**  | **11.9125 ms** | **11.3 ms**   | **10.275 ms**
 
 * Deuxième test avec 100 Thread
 
