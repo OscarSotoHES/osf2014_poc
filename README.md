@@ -128,7 +128,7 @@ Cette API permet de gérer les citoyens des villes. Il a été créé dans le bu
 Les test ont effectue avec Jmeter en utilisant 4 configurations différents
 
    Configuration  	  | Description 				
-|-------------------------|------------------------------------------:
+|-------------------------|----------------------------------------------------
 | Server Play	          | 1 seule server play sans utiliser cache et cluster
 | Cluster Play            | 2 serveurs avec le LoadBalancer san cache
 | Server Play avec Cache  | 1 seul serveur play en utilisant le cache
