@@ -220,5 +220,6 @@ Les résultant obtenu sont les suivantes
 
 ![Comparaison des performances](http://subefotos.com/ver/?ae870179d15d41dda5bc2e9ac62c5002o.png)
 
+http://fotos.subefotos.com/ae870179d15d41dda5bc2e9ac62c5002o.png
 
 on peux regarder que a chaque fois le temps utilise est chaque fois moins que quand on n’utilise rien sur notre site, el le temps diminue de 35%
