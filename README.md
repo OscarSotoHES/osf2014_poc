@@ -218,6 +218,6 @@ Les résultant obtenu sont les suivantes
 | **SubTotal**  | **79.4 ms**  | **57.05 ms**   | **42.75 ms**   | **31.075 ms**
 | **TOTAL**     | **77.475 ms**   | **55.825 ms** | **143.0125 ms**     | **32.0625 ms**
 
-<img src="http://thumbs.subefotos.com/8b119d3a4808c2d8afe3b16150dc58e1o.jpg" width="778" height="538"/>
+<img src="http://s23.postimg.org/ialjnm0tn/Capture_d_cran_2014_01_13_09_51_51.png"/>
 
 on peux regarder que a chaque fois le temps utilise est chaque fois moins que quand on n’utilise rien sur notre site, el le temps diminue de 35%
