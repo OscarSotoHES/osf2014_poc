@@ -217,3 +217,5 @@ Les résultant obtenu sont les suivantes
 | DELETE        | 79.3 ms          | 51.2 ms        | 42.1 ms           |32.1 ms
 | **SubTotal**  | **79.4 ms**  | **57.05 ms**   | **42.75 ms**   | **31.075 ms**
 | **TOTAL**     | **77.475 ms**   | **55.825 ms** | **143.0125 ms**     | **32.0625 ms**
+
+![Comparaison des performances](http://subefotos.com/ver/?ae870179d15d41dda5bc2e9ac62c5002o.png)
