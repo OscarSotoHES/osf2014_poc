@@ -12,10 +12,14 @@ import play.cache.Cache;
 public class Application extends Controller {
 
 	//Switch to enable the cache.
-	private boolean cache = false;
+	private static boolean cache = false;
 
     public static Result index() {
 		//this.cache = true;
+    	City city = new City("Paris");
+        City.create(city);
+    	City city1 = new City("London");
+        City.create(city1);
         return ok("City & Citizen. Server 1");
     }
 	
@@ -25,18 +29,18 @@ public class Application extends Controller {
     
 	//CITIES
     public static Result allCities() {
-		String cities = Application::getCache("cities");
+		String cities = getCache("cities");
 		if (cities == null || cities.equals("null")){
 			cities = City.find.all().toString();
-			if (this.cache) { Application::setCache("cities", cities, 600);}  
+			if (cache) { setCache("cities", cities, 600);}  
 		}
-		return ok(cities);
+		return ok(cities + "\n\n\n" + City.find.findSet().toString() + "\n\n\n" + City.find.findList().toString());
     }
 	public static Result getCity(Long idc) {
-		String city = Application::getCache("city_"+idc);
+		String city = getCache("city_"+idc);
 		if (city == null || city.equals("null")){
 			city = City.find.ref(idc).toString();
-			if (this.cache) { Application::setCache("city_"+idc, city, 600);}
+			if (cache) { setCache("city_"+idc, city, 600);}
 		}
         return ok(city);
     }
@@ -57,6 +61,24 @@ public class Application extends Controller {
             return created("City created with name: "+name);
         }
     }
+    
+    @BodyParser.Of(Json.class)
+    public static Result updateCity(Long idc) {
+    	JsonNode json = request().body().asJson();
+        String name = json.findPath("name").textValue();
+        if(name == null) {
+            return badRequest("Missing parameter [name] to update this city");
+        } 
+        else if(name.equals(""))
+        	return badRequest("Empty name");
+        else {
+        	String old_name = City.find.ref(idc).getName();
+        	City.find.ref(idc).setName(name);
+            City.update(idc);
+			Cache.remove("cities");
+            return created("City " + old_name + " updated with name: "+name);
+        }
+    }
   
     public static Result deleteCity(Long idc) {
     	City.delete(idc);
@@ -68,25 +90,25 @@ public class Application extends Controller {
 	
 	//CITIZEN
     public static Result allCitizens() {
-		String citizens = Application::getCache("citizens");
+		String citizens = getCache("citizens");
 		if (citizens == null || citizens.equals("null")){
 			citizens = Citizen.find.all().toString();
-			if (this.cache) { Application::setCache("citizens", citizens, 600);}
+			if (cache) { setCache("citizens", citizens, 600);}
 		}
         return ok(citizens);
     }
     
     public static Result getCitizensOfCity(Long idc) {
-		String citizens = Application::getCache("cityCitizens_"+idc);
+		String citizens = getCache("cityCitizens_"+idc);
 		if (citizens == null || citizens.equals("null")){
 			citizens = City.find.ref(idc).getCitizen().toString();
-			if (this.cache) { Application::setCache("cityCitizens_"+idc, citizens, 600);}
+			if (cache) { setCache("cityCitizens_"+idc, citizens, 600);}
 		}
         return ok(citizens);
     }
   
     @BodyParser.Of(Json.class)
-    public static Result newCitizen(Long idc) {
+    public static Result addCitizen(Long idc) {
     	JsonNode json = request().body().asJson();
         String name = json.findPath("name").textValue();
         String first_name = json.findPath("fname").textValue();
@@ -104,6 +126,30 @@ public class Application extends Controller {
             Citizen.create(citizen);
 			Cache.remove("citizens");
             return created("Citizen created with name: "+first_name+" "+name+" in city "+City.find.ref(idc).toString());
+        }
+    }
+    
+    @BodyParser.Of(Json.class)
+    public static Result updateCitizen(Long id) {
+    	JsonNode json = request().body().asJson();
+        String name = json.findPath("name").textValue();
+        String first_name = json.findPath("fname").textValue();
+        if(name == null) {
+            return badRequest("Missing parameter [name] to update this citizen");
+        } 
+        else if(first_name == null) {
+            return badRequest("Missing parameter [fname] to update this citizen");
+        }
+        else if(name.equals("") || first_name.equals(""))
+        	return badRequest("Empty name or first name");
+        else {
+        	String old_first_name = Citizen.find.ref(id).getFirstName();
+        	String old_name = Citizen.find.ref(id).getName();
+        	Citizen.find.ref(id).setFirstName(first_name);
+        	Citizen.find.ref(id).setName(name);
+            Citizen.update(id);
+			Cache.remove("citizens");
+            return created("Citizen " + old_first_name + " " + old_name + " updated with name: " + first_name + " " + name);
         }
     }
   
