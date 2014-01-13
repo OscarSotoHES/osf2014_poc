@@ -146,7 +146,6 @@ public class Application extends Controller {
         	Citizen.find.ref(id).setName(name);
             	Citizen.update(id);
 		Cache.remove("citizens");
-		Cache.remove("cityCitizens_"+idc);
             return created("Citizen " + old_first_name + " " + old_name + " updated with name: " + first_name + " " + name);
         }
     }
